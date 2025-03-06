@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner with Gen AI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">TripGenie</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#signin">Sign In</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2 class="text-center text-4xl font-bold tracking-tight text-gray-900 md:text-5xl xl:text-7xl">Your Next Journey, Optimized</h2>
+        <p>Build, personalize, and optimize your itineraries with our AI trip planner. Designed for vacations, workations, and everyday adventures.</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Enter Starting Location" name="source" class="source-input">
+            <input type="text" placeholder="Enter Destination" name="destination" class="destination-input">
+            <input type="date" id="start-date">
+            <input type="date" id="end-date">
+        </div>
+        <div><button class="button">Get Suggestions</button></div>
+        
+    </section>
+
+    <section class="ai-suggestions">
+        <h2 class="section-title">Your AI-Powered Trip</h2>
+        <div class="cards-container">
+            <div class="card">
+                <h3>Personalized Suggestions</h3>
+                <img src="images/per2.jpg" alt="personalised recommendations">
+                <p>Get AI-driven trip recommendations tailored to your preferences.</p>
+            </div>
+            <div class="card">
+                <h3>Best Travel Routes</h3>
+                <img src="images/travel2.jpeg" alt="travel routes">
+                <p>Optimize your journey with the best routes and time-saving tips.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="places-to-visit">
+        <h2 class="section-title">Recommended Places to Visit</h2>
+        <div class="cards-container">
+            <div class="trending-card">
+                <img src="images/paris1.jpeg" alt="Paris">
+                <div class="capsules">
+                    <span>Eiffel Tower</span>
+                    <span>Lights</span>
+                </div>
+                <div class="content">
+                    <h1>Paris</h1>
+                    <p>A lake is a large body of water within land. It does not flow like rivers, but many have rivers flowing into and out of them.</p>
+                </div>
+            </div>
+    
+            <div class="trending-card">
+                <img src="images/london.jpeg" alt="London">
+                <div class="capsules">
+                    <span>Big Ben</span>
+                    <span>River Thames</span>
+                </div>
+                <div class="content">
+                    <h1>London</h1>
+                    <p>London, the capital of England, is known for its historic sites, including Big Ben, Tower Bridge, and the British Museum.</p>
+                </div>
+            </div>
+    
+            <div class="trending-card">
+                <img src="images/new york.jpeg" alt="New York">
+                <div class="capsules">
+                    <span>Times Square</span>
+                    <span>Skyscrapers</span>
+                </div>
+                <div class="content">
+                    <h1>New York</h1>
+                    <p>New York City is famous for its skyline, Broadway theaters, and diverse culture, making it a global icon.</p>
+                </div>
+            </div>
+            <div class="trending-card">
+                <img src="images/tokyo.jpeg" alt="Tokyo">
+                <div class="capsules">
+                    <span>Shibuya</span>
+                    <span>Cherry Blossoms</span>
+                </div>
+                <div class="content">
+                    <h1>Tokyo</h1>
+                    <p>Tokyo blends modern skyscrapers with historic temples, making it a top destination for travelers worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="flights">
+        <h2 class="section-title">Flights</h2>
+        <div class="flight-container">
+            
+            <div class="input-container">
+                <!-- From -->
+                <div class="From">
+                    <label for="from" class="text">From:</label>
+                    <input type="text" id="from" placeholder="Write here..." name="from" class="input">
+                </div>
+                <!-- To -->
+                <div class="To">
+                    <label for="to" class="text">To:</label>
+                    <input type="text" id="to" placeholder="Write here..." name="to" class="input">
+                </div>
+                <!-- Departure Date -->
+                <div class="Date">
+                    <label for="departure" class="text">Departure Date:</label>
+                    <input type="date" id="departure" name="departure" class="input">
+                </div>
+                <!-- Return Date -->
+                <div class="Date">
+                    <label for="return" class="text">Return Date:</label>
+                    <input type="date" id="return" name="return" class="input">
+                </div>
+                <!-- Travellers -->
+                <div class="Travellers">
+                    <label for="adults" class="text">Adults & Children:</label>
+                    <div class="traveller-box">
+                        <input type="number" id="adults" name="adults" min="1" max="10" value="1" class="input small-input" placeholder="Adults">
+                        <input type="number" id="children" name="children" min="0" max="10" value="0" class="input small-input" placeholder="Children">
+                    </div>
+                </div>
+            </div>
+    
+            <button class="primary-button" onclick="searchFlights()">Search Flights</button>
+            <div id="flights-container" class="info-box">
+                <!-- Flight info here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="hotels">
+        <h2 class="section-title">Hotels</h2>
+        <div class="hotel-container">
+            
+            <div class="input-container">
+                <!-- City/Property -->
+                <div class="City">
+                    <label for="city" class="text">City/Property:</label>
+                    <input type="text" id="city" placeholder="Enter city or hotel name..." name="city" class="input">
+                </div>
+                <!-- Check-in Date -->
+                <div class="Date">
+                    <label for="checkin" class="text">Check-in Date:</label>
+                    <input type="date" id="checkin" name="checkin" class="input">
+                </div>
+                <!-- Check-out Date -->
+                <div class="Date">
+                    <label for="checkout" class="text">Check-out Date:</label>
+                    <input type="date" id="checkout" name="checkout" class="input">
+                </div>
+                <!-- Rooms -->
+                <div class="Rooms">
+                    <label for="rooms" class="text">Rooms:</label>
+                    <input type="number" id="rooms" name="rooms" min="1" max="10" value="1" class="input small-input">
+                </div>
+                <!-- Guests -->
+                <div class="Guests">
+                    <label for="guests" class="text">Guests:</label>
+                    <div class="traveller-box">
+                        <input type="number" id="adults" name="adults" min="1" max="10" value="1" class="input small-input" placeholder="Adults">
+                        <input type="number" id="children" name="children" min="0" max="10" value="0" class="input small-input" placeholder="Children">
+                    </div>
+                </div>
+            </div>
+    
+            <button class="primary-button" onclick="searchHotels()">Search Hotels</button>
+            <div id="hotels-container" class="info-box">
+                <!-- Hotel search results will be displayed here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="prices">
+        <h2 class="section-title">Estimated Prices</h2>
+        <div class="price-container">
+            <div class="price-box">
+                <label for="flight-cost" class="text">Flight Cost (₹):</label>
+                <input type="number" id="flight-cost" name="flight-cost" class="input small-input" placeholder="Enter cost">
+            </div>
+            <div class="price-box">
+                <label for="hotel-cost" class="text">Hotel Cost (₹):</label>
+                <input type="number" id="hotel-cost" name="hotel-cost" class="input small-input" placeholder="Enter cost">
+            </div>
+            <div class="price-box">
+                <label for="food-cost" class="text">Food & Misc (₹):</label>
+                <input type="number" id="food-cost" name="food-cost" class="input small-input" placeholder="Enter cost">
+            </div>
+            <div class="price-box total">
+                <label class="text">Total Estimated Cost (₹):</label>
+                <span id="total-cost">₹0</span>
+            </div>
+        </div>
+        <button class="primary-button" onclick="calculateTotal()">Calculate Total</button>
+    </section>
+    
+    <section class="itinerary">
+        <h2 class="section-title">Your Itinerary</h2>
+        <div class="itinerary-container">
+            <div id="itinerary-list">
+                <!-- Dynamic itinerary content will be inserted here -->
+            </div>
+        </div>
+    
+        <div class="button-group">
+            <button class="primary-button" onclick="addDay()">Add Day</button>
+            <button class="secondary-button" onclick="saveItinerary()">Save Itinerary</button>
+            <button class="secondary-button" onclick="shareItinerary()">Share Itinerary</button>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+        <div class="contact-info">
+            <p>Email: info@tripgenie.com</p>
+            <p>Phone: +123 456 7890</p>
+        </div>
+        <div class="legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
