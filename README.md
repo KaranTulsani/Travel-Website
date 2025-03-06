@@ -1,4 +1,6 @@
 ﻿# Travel-Website with Gen AI
+ project link-  https://karantulsani.github.io/Travel-Website/
+ 
  Overview:
 
 TripGenie is an AI-powered travel planning web application that helps users build, personalize, and optimize their travel itineraries. Designed for vacations, workations, and everyday adventures, this project integrates various travel-related features, including flights, hotels, and itinerary management.
