@@ -1,12 +1,12 @@
 ﻿# Travel-Website with Gen AI
  project link-  https://karantulsani.github.io/Travel-Website/
  
- Overview:
+# Overview:
 
 TripGenie is an AI-powered travel planning web application that helps users build, personalize, and optimize their travel itineraries. Designed for vacations, workations, and everyday adventures, this project integrates various travel-related features, including flights, hotels, and itinerary management.
 
 
-Features:
+# Features:
 
 AI-Powered Trip Suggestions: Get personalized travel recommendations.
 
@@ -16,24 +16,21 @@ Hotel Booking Suggestions: Locate accommodations that fit your preferences.
 
 Places to Visit: View trending destinations and popular attractions.
 
-Estimated Cost Calculation: Calculate travel expenses for flights, hotels, and food.
-
 Custom Itinerary: Build and save your daily travel plans.
 
 Social Media Integration: Share your travel itinerary with friends.
 
 
-Technologies Used:
+# Technologies Used:
 
-Frontend: HTML, CSS, JavaScript
+Frontend: 
+HTML, CSS, JavaScript
 
 Backend: (To be integrated, such as Node.js, Python, or Firebase)
 
 APIs Used: (To be integrated, such as Amadeus API for flights, hotel booking APIs, or Google Maps API)
 
-Installation
-
-Future Enhancements:
+# Future Enhancements:
 
 Integration with real-time flight and hotel booking APIs.
 
