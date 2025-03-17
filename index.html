@@ -10,17 +10,27 @@
     <header>
         <div class="logo">TripGenie</div>
         <nav>
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#signin">Sign In</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="auth-btn" onclick="toggleDropdown(event)">Account ▼</a>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <a href="auth/signin.html">Sign In</a>
+                        <a href="auth/signup.html">Sign Up</a>
+                    </div>
+                </li><label class="switch">
+                    <input type="checkbox" class="theme-checkbox">
+                    <span class="slider round"></span>
+                </label>
             </ul>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
         </nav>
     </header>
 
     <section class="hero">
-        <h2 class="text-center text-4xl font-bold tracking-tight text-gray-900 md:text-5xl xl:text-7xl">Your Next Journey, Optimized</h2>
-        <p>Build, personalize, and optimize your itineraries with our AI trip planner. Designed for vacations, workations, and everyday adventures.</p>
+        <h2 class="text-gray-900">Your Next Journey, Optimized</h2>
+    <p>Build, personalize, and optimize your itineraries with our AI trip planner. Designed for vacations, workations, and everyday adventures.</p>
         <div class="search-bar">
             <input type="text" placeholder="Enter Starting Location" name="source" class="source-input">
             <input type="text" placeholder="Enter Destination" name="destination" class="destination-input">
@@ -28,8 +38,8 @@
             <input type="date" id="end-date">
         </div>
         <div><button class="button">Get Suggestions</button></div>
-        
     </section>
+    
 
     <section class="ai-suggestions">
         <h2 class="section-title">Your AI-Powered Trip</h2>
@@ -183,28 +193,7 @@
         </div>
     </section>
 
-    <section class="prices">
-        <h2 class="section-title">Estimated Prices</h2>
-        <div class="price-container">
-            <div class="price-box">
-                <label for="flight-cost" class="text">Flight Cost (₹):</label>
-                <input type="number" id="flight-cost" name="flight-cost" class="input small-input" placeholder="Enter cost">
-            </div>
-            <div class="price-box">
-                <label for="hotel-cost" class="text">Hotel Cost (₹):</label>
-                <input type="number" id="hotel-cost" name="hotel-cost" class="input small-input" placeholder="Enter cost">
-            </div>
-            <div class="price-box">
-                <label for="food-cost" class="text">Food & Misc (₹):</label>
-                <input type="number" id="food-cost" name="food-cost" class="input small-input" placeholder="Enter cost">
-            </div>
-            <div class="price-box total">
-                <label class="text">Total Estimated Cost (₹):</label>
-                <span id="total-cost">₹0</span>
-            </div>
-        </div>
-        <button class="primary-button" onclick="calculateTotal()">Calculate Total</button>
-    </section>
+    
     
     <section class="itinerary">
         <h2 class="section-title">Your Itinerary</h2>

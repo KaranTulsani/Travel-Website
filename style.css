@@ -10,27 +10,88 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
-  background-color: #f39c12;
-  color: #f5eaea;
+  padding: 15px 30px;
+  background: #007bff;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-header .logo {
+.logo {
   font-size: 1.5rem;
-  font-weight: bold;
 }
 
-header nav ul {
-  list-style: none;
+.nav-links {
   display: flex;
-  gap: 1rem;
+  list-style: none;
 }
 
-header nav ul li a {
-  color: #e9dfdf;
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffcc00;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  top: 30px;
+  right: 0;
+  min-width: 120px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: black;
   text-decoration: none;
 }
 
+.dropdown-menu.active {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-links {
+      display: none;
+      flex-direction: column;
+      background: #007bff;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 10px;
+  }
+  .nav-links.active {
+      display: flex;
+  }
+  .hamburger {
+      display: block;
+  }
+}
 .hero {
   text-align: center;
   padding: 2rem;
@@ -87,7 +148,7 @@ header nav ul li a {
 
 /* Card Styling */
 .trending-card {
-  background-color: white;
+  background-color: rgb(251, 253, 255);
   width: 294px;
   height: 380px;
   border-radius: 7px;
@@ -254,7 +315,7 @@ header nav ul li a {
 }
 
 footer {
-  background-color: #f39c12 ;
+  background-color: #007bff ;
   color: #fff;
   padding: 2rem;
   text-align: center;
@@ -446,51 +507,6 @@ footer a {
   }
 }
 
-/* Price Section */
-.price-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-  text-align: center;
-}
-
-/* Individual Price Boxes */
-.price-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 200px;
-}
-
-/* Labels */
-.text {
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-/* Input Fields */
-.small-input {
-  padding: 8px;
-  font-size: 1rem;
-  border: 2px solid #818CF8;
-  border-radius: 5px;
-  background: #e8e8e8;
-  text-align: center;
-  width: 120px;
-}
-
-/* Total Price Box */
-.price-box.total {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #4CAF50;
-}
-
 /* Button */
 .primary-button {
   margin-top: 10px;
@@ -560,3 +576,109 @@ footer a {
 .secondary-button:hover {
   background-color: #45a049;
 }
+
+/* Dark Mode Toggle */
+/* From Uiverse.io by cuzpq */ 
+/* Dark Mode Toggle */
+.theme-checkbox {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ddd;
+  outline: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.theme-checkbox::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  left: 2px;
+  transition: 0.4s;
+}
+
+.theme-checkbox:checked {
+  background: #333;
+}
+
+.theme-checkbox:checked::before {
+  transform: translateX(26px);
+  background: rgb(224, 224, 215);
+}
+
+/* Align Dark Mode Toggle */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.theme-checkbox {
+  margin-left: 15px;
+}
+
+/* Default Light Mode */
+body {
+  background-color: #ffffff;
+  color: #333;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Dark Mode for Header & Footer */
+.dark-mode header,
+.dark-mode footer {
+  background: #1a1a1a;
+}
+
+/* Dark Mode for Hero Section (Fix) */
+.dark-mode .hero {
+  background-color: #1a1a1a; /* Darker background */
+}
+
+/* Dark Mode Hero Text Fix */
+.dark-mode .hero h2, 
+.dark-mode .hero p {
+  color: white !important; 
+}
+
+/* Dark Mode Cards */
+.dark-mode .card {
+  background: #222;
+  color: white;
+}
+
+/* Dark Mode Buttons */
+.dark-mode .button {
+  background: #ffcc00;
+  color: black;
+  border: 2px solid #ffcc00;
+}
+
+/* Dark Mode Input Fields */
+.dark-mode input {
+  background-color: #222;
+  color: white;
+  border: 1px solid #777;
+}
+
+/* Default Light Mode */
+.hero h2 {
+  color: #111; /* Default dark text */
+}
+
+
+
