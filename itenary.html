@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripGenie - AI Travel Planner</title>
+  <link rel="stylesheet" href="itenary.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">TripGenie</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="dropdown">
+          <a href="#" onclick="toggleDropdown(event)">Account ▼</a>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="auth/signin.html">Sign In</a>
+            <a href="auth/signup.html">Sign Up</a>
+          </div>
+        </li>
+        <label class="switch">
+          <input type="checkbox" class="theme-checkbox">
+          <span class="slider round"></span>
+        </label>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">☰</div>
+    </nav>
+  </header>
+
+  <!-- Flight Search Collapsible -->
+  <section class="card">
+    <div class="card-header" onclick="toggleContent()">
+      <div class="title">
+        <div class="icon">✈️</div> Find Flights
+      </div>
+      <div class="arrow" id="arrow">&#9662;</div>
+    </div>
+
+    <div class="card-content" id="cardContent" style="display: none;">
+      <label>From</label>
+      <select>
+        <option>Mumbai</option>
+        <option>Delhi</option>
+        <option>Bangalore</option>
+        <option>Chennai</option>
+        <option>Kolkata</option>
+      </select>
+
+      <label>To</label>
+      <select>
+        <option>Select Destination</option>
+        <option>Delhi</option>
+        <option>Bangalore</option>
+        <option>Chennai</option>
+        <option>Kolkata</option>
+      </select>
+
+      <div class="trip-type">
+        <label><input type="radio" name="trip" checked> Roundtrip</label>
+        <label><input type="radio" name="trip"> One-way</label>
+      </div>
+
+      <div class="dates">
+        <div>
+          <label>Depart</label>
+          <input type="date">
+        </div>
+        <div>
+          <label>Return</label>
+          <input type="date">
+        </div>
+      </div>
+
+      <button class="primary-button">Search Flights ✈️</button>
+    </div>
+  </section>
+
+  <!-- AI Itinerary Section -->
+  <section class="itinerary">
+    <h2 class="section-title">Your AI-Generated Itinerary</h2>
+    <div id="itinerary-list">
+      <!-- AI-generated itinerary content will be inserted here -->
+    </div>
+
+    <div class="button-group">
+      <button class="primary-button" onclick="addDay()">Add Day</button>
+      <button class="secondary-button" onclick="saveItinerary()">Save</button>
+      <button class="secondary-button" onclick="shareItinerary()">Share</button>
+    </div>
+  </section>
+
+  <!-- Hotel Card -->
+  <section class="hotel-card">
+    <div class="hotel-info">
+      <span class="hotel-icon">🏨</span>
+      <div>
+        <h3>Find Hotels</h3>
+        <p>Ensure a restful night at family-friendly hotels.</p>
+      </div>
+    </div>
+    <button class="primary-button">Find Hotels ➔</button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-media">
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Instagram</a>
+    </div>
+    <div class="contact-info">
+      <p>Email: info@tripgenie.com</p>
+      <p>Phone: +123 456 7890</p>
+    </div>
+    <div class="legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleContent() {
+      const content = document.getElementById('cardContent');
+      const arrow = document.getElementById('arrow');
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      arrow.classList.toggle('rotate');
+    }
+
+    function toggleDropdown(event) {
+      event.preventDefault();
+      document.getElementById('dropdownMenu').classList.toggle('show');
+    }
+
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+
+    function addDay() {
+      const itinerary = document.getElementById('itinerary-list');
+      const day = document.createElement('div');
+      day.innerHTML = `<p>Day ${itinerary.children.length + 1}: [AI Suggested Plan]</p>`;
+      itinerary.appendChild(day);
+    }
+
+    function saveItinerary() {
+      alert("Your itinerary has been saved!");
+    }
+
+    function shareItinerary() {
+      alert("Sharing your AI-generated itinerary...");
+    }
+  </script>
+</body>
+
+</html>

@@ -1,45 +1,56 @@
-/* styles.css */
-body {
-  font-family: Arial, sans-serif;
+/* Reset & Base Styles */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Header */
 header {
+  background-color: #4e73df;
+  color: #fff;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  background: #007bff;
-  color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
-.nav-links {
-  display: flex;
+nav .nav-links {
   list-style: none;
-}
-
-.nav-links li {
-  margin: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
 .nav-links a:hover {
-  color: #ffcc00;
+  color: #ffd369;
 }
 
 .hamburger {
@@ -117,6 +128,33 @@ header {
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  padding: 10px;
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.nav-links.active {
+  display: block;
+}
+.dropdown {
+  position: relative;
+}
+
 .cards-container .card img {
   width: 100%; /* Make sure images cover the card width */
   height: 200px; /* Adjust height for consistency */
@@ -207,7 +245,7 @@ header {
   gap: 1rem;
 }
 
-.search-bar input, .search-bar button {
+.search-bar input, .search-bar button, .search-bar select {
   /*padding: 0.5rem;
   font-size: 1rem;
 }
@@ -330,355 +368,4 @@ footer a {
   text-decoration: none;
   margin: 0 0.5rem;
 }
-
-/* Flights Section Layout */
-.flight-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-}
-
-/* Input Fields - Flexbox Layout */
-.input-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-
-/* Common styling for all input fields */
-.From, .To, .Date, .Travellers {
-  display: flex;
-  flex-direction: column;
-  width: calc(20% - 10px); /* Adjusts width dynamically */
-  min-width: 150px;
-}
-
-/* Ensuring Labels Align Properly */
-.From label.text, .To label.text, .Date label.text, .Travellers label.text {
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-/* Input box styling */
-.input {
-  padding: 10px;
-  font-size: 0.9rem;
-  border: 2px solid #818CF8;
-  border-radius: 5px;
-  background: #e8e8e8;
-  width: 100%;
-}
-
-/* Travellers Section - Adjusting Number Inputs */
-.traveller-box {
-  display: flex;
-  gap: 10px;
-}
-
-.small-input {
-  width: 60px;
-  text-align: center;
-}
-
-/* Search Button */
-.primary-button {
-  padding: 12px 20px;
-  font-size: 1rem;
-  color: white;
-  background-color: #818CF8;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.primary-button:hover {
-  background-color: #5a67d8;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .input-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .From, .To, .Date, .Travellers {
-    width: 100%;
-  }
-
-  .small-input {
-    width: 100%;
-  }
-}
-
-/* Hotels Section Layout */
-.hotel-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 900px;
-  margin: auto;
-}
-
-/* Input Fields - Flexbox Layout */
-.input-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-}
-
-/* Common styling for all input fields */
-.City, .Date, .Rooms, .Guests {
-  display: flex;
-  flex-direction: column;
-  width: calc(20% - 10px); /* Adjusts width dynamically */
-  min-width: 150px;
-}
-
-/* Ensuring Labels Align Properly */
-.City label.text, .Date label.text, .Rooms label.text, .Guests label.text {
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-/* Input box styling */
-.input {
-  padding: 10px;
-  font-size: 0.9rem;
-  border: 2px solid #818CF8;
-  border-radius: 5px;
-  background: #e8e8e8;
-  width: 100%;
-}
-
-/* Rooms & Guests - Adjusting Number Inputs */
-.traveller-box {
-  display: flex;
-  gap: 10px;
-}
-
-.small-input {
-  width: 60px;
-  text-align: center;
-}
-
-/* Search Button */
-.primary-button {
-  padding: 12px 20px;
-  font-size: 1rem;
-  color: white;
-  background-color: #818CF8;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.primary-button:hover {
-  background-color: #5a67d8;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .input-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .City, .Date, .Rooms, .Guests {
-    width: 100%;
-  }
-
-  .small-input {
-    width: 100%;
-  }
-}
-
-/* Button */
-.primary-button {
-  margin-top: 10px;
-  padding: 12px 20px;
-  font-size: 1rem;
-  color: white;
-  background-color: #818CF8;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.primary-button:hover {
-  background-color: #5a67d8;
-}
-
-/* Itinerary Section */
-.itinerary-container {
-  width: 90%;
-  max-width: 800px;
-  margin: auto;
-  text-align: left;
-  padding: 20px;
-  border-radius: 8px;
-  background: #f9f9f9;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Each Day Block */
-.day-container {
-  padding: 10px;
-  margin: 10px 0;
-  border: 2px solid #818CF8;
-  border-radius: 8px;
-  background: #e8e8e8;
-}
-
-/* Buttons */
-.button-group {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 10px;
-}
-
-.primary-button, .secondary-button {
-  padding: 12px 20px;
-  font-size: 1rem;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.primary-button {
-  background-color: #818CF8;
-}
-
-.primary-button:hover {
-  background-color: #5a67d8;
-}
-
-.secondary-button {
-  background-color: #4CAF50;
-}
-
-.secondary-button:hover {
-  background-color: #45a049;
-}
-
-/* Dark Mode Toggle */
-/* From Uiverse.io by cuzpq */ 
-/* Dark Mode Toggle */
-.theme-checkbox {
-  position: relative;
-  width: 50px;
-  height: 24px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: #ddd;
-  outline: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.4s;
-}
-
-.theme-checkbox::before {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: white;
-  top: 2px;
-  left: 2px;
-  transition: 0.4s;
-}
-
-.theme-checkbox:checked {
-  background: #333;
-}
-
-.theme-checkbox:checked::before {
-  transform: translateX(26px);
-  background: rgb(224, 224, 215);
-}
-
-/* Align Dark Mode Toggle */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.theme-checkbox {
-  margin-left: 15px;
-}
-
-/* Default Light Mode */
-body {
-  background-color: #ffffff;
-  color: #333;
-  transition: background 0.3s, color 0.3s;
-}
-
-/* Dark Mode */
-.dark-mode {
-  background-color: #121212;
-  color: #f1f1f1;
-}
-
-/* Dark Mode for Header & Footer */
-.dark-mode header,
-.dark-mode footer {
-  background: #1a1a1a;
-}
-
-/* Dark Mode for Hero Section (Fix) */
-.dark-mode .hero {
-  background-color: #1a1a1a; /* Darker background */
-}
-
-/* Dark Mode Hero Text Fix */
-.dark-mode .hero h2, 
-.dark-mode .hero p {
-  color: white !important; 
-}
-
-/* Dark Mode Cards */
-.dark-mode .card {
-  background: #222;
-  color: white;
-}
-
-/* Dark Mode Buttons */
-.dark-mode .button {
-  background: #ffcc00;
-  color: black;
-  border: 2px solid #ffcc00;
-}
-
-/* Dark Mode Input Fields */
-.dark-mode input {
-  background-color: #222;
-  color: white;
-  border: 1px solid #777;
-}
-
-/* Default Light Mode */
-.hero h2 {
-  color: #111; /* Default dark text */
-}
-
-
 

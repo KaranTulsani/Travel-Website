@@ -1,0 +1,281 @@
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Header */
+header {
+  background-color: #4e73df;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+nav .nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffd369;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  color: #333;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.show {
+  display: block;
+}
+
+/* Theme Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Card Styling */
+.card, .hotel-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card-content {
+  margin-top: 20px;
+}
+
+select, input[type="text"], input[type="date"] {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.trip-type {
+  margin: 15px 0;
+}
+
+.dates {
+  display: flex;
+  gap: 20px;
+}
+
+.primary-button, .secondary-button {
+  background-color: #4e73df;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.primary-button:hover, .secondary-button:hover {
+  background-color: #3b5bc7;
+}
+
+.secondary-button {
+  background-color: #6c757d;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.itinerary {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.itinerary-container {
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Hotel */
+.hotel-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hotel-icon {
+  font-size: 2rem;
+}
+
+.hotel-btn {
+  margin-top: 15px;
+  background-color: #4e73df;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+}
+
+.hotel-btn:hover {
+  background-color: #3b5bc7;
+}
+
+/* Footer */
+footer {
+  background-color: #4e73df;
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+}
+
+footer a {
+  color: #ffd369;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Arrow Rotation */
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #4e73df;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .dates {
+    flex-direction: column;
+  }
+}
