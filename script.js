@@ -79,3 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const signinBtn = document.getElementById('signin-btn');
     if (signinBtn) signinBtn.addEventListener('click', signinUser);
 });
+// Reveal animations on scroll
+window.addEventListener('scroll', function() {
+    var reveals = document.querySelectorAll('.reveal');
+    
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 150;
+      
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add('active');
+      }
+    }
+  });

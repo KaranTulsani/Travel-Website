@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TripGenie - AI Travel Planner</title>
   <link rel="stylesheet" href="itenary.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
@@ -23,56 +24,40 @@
             <a href="auth/signup.html">Sign Up</a>
           </div>
         </li>
-        <label class="switch">
-          <input type="checkbox" class="theme-checkbox">
-          <span class="slider round"></span>
-        </label>
       </ul>
       <div class="hamburger" onclick="toggleMenu()">☰</div>
     </nav>
   </header>
 
   <!-- Flight Search Collapsible -->
-  <section class="card">
-    <div class="card-header" onclick="toggleContent()">
-      <div class="title">
-        <div class="icon">✈️</div> Find Flights
-      </div>
-      <div class="arrow" id="arrow">&#9662;</div>
+  <section class="card flight-card">
+    <div class="card-header" onclick="toggleFlightCard()">
+      <h3>
+        <i class="fa-solid fa-plane-departure"></i> Find Flights
+        <span class="dropdown-icon" id="flightArrow">▼</span>
+      </h3>
     </div>
 
-    <div class="card-content" id="cardContent" style="display: none;">
-      <label>From</label>
-      <select>
-        <option>Mumbai</option>
-        <option>Delhi</option>
-        <option>Bangalore</option>
-        <option>Chennai</option>
-        <option>Kolkata</option>
-      </select>
+    <div class="flight-content">
+      <label for="from">From</label>
+      <input type="text" id="from" placeholder="Enter departure city">
 
-      <label>To</label>
-      <select>
-        <option>Select Destination</option>
-        <option>Delhi</option>
-        <option>Bangalore</option>
-        <option>Chennai</option>
-        <option>Kolkata</option>
-      </select>
+      <label for="to">To</label>
+      <input type="text" id="to" placeholder="Enter destination city">
 
       <div class="trip-type">
-        <label><input type="radio" name="trip" checked> Roundtrip</label>
-        <label><input type="radio" name="trip"> One-way</label>
+        <label><input type="radio" name="trip" value="roundtrip"> Roundtrip</label>
+        <label><input type="radio" name="trip" value="oneway" checked> One-way</label>
       </div>
 
       <div class="dates">
         <div>
-          <label>Depart</label>
-          <input type="date">
+          <label for="depart">Depart</label>
+          <input type="date" id="depart">
         </div>
         <div>
-          <label>Return</label>
-          <input type="date">
+          <label for="return">Return</label>
+          <input type="date" id="return" disabled>
         </div>
       </div>
 
@@ -83,9 +68,7 @@
   <!-- AI Itinerary Section -->
   <section class="itinerary">
     <h2 class="section-title">Your AI-Generated Itinerary</h2>
-    <div id="itinerary-list">
-      <!-- AI-generated itinerary content will be inserted here -->
-    </div>
+    <div id="itinerary-list"></div>
 
     <div class="button-group">
       <button class="primary-button" onclick="addDay()">Add Day</button>
@@ -125,22 +108,35 @@
 
   <!-- JavaScript -->
   <script>
-    function toggleContent() {
-      const content = document.getElementById('cardContent');
-      const arrow = document.getElementById('arrow');
-      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    // Toggle Flight Card
+    function toggleFlightCard() {
+      const card = document.querySelector('.flight-card');
+      const arrow = document.getElementById('flightArrow');
+      card.classList.toggle('open');
       arrow.classList.toggle('rotate');
     }
 
+    // Handle Roundtrip / One-way logic
+    const tripRadios = document.querySelectorAll('input[name="trip"]');
+    const returnInput = document.getElementById('return');
+    tripRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        returnInput.disabled = radio.value !== 'roundtrip';
+      });
+    });
+
+    // Navbar Dropdown
     function toggleDropdown(event) {
       event.preventDefault();
       document.getElementById('dropdownMenu').classList.toggle('show');
     }
 
+    // Hamburger Menu
     function toggleMenu() {
       document.querySelector('.nav-links').classList.toggle('active');
     }
 
+    // Itinerary Controls
     function addDay() {
       const itinerary = document.getElementById('itinerary-list');
       const day = document.createElement('div');
@@ -156,6 +152,7 @@
       alert("Sharing your AI-generated itinerary...");
     }
   </script>
+
 </body>
 
 </html>
