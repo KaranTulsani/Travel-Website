@@ -47,8 +47,9 @@
       </select>
     </div>
     <div class="button-group">
-        <button class="primary-button" onclick="getSuggestions()">Get Suggestions ✨</button>
-      </div>
+        <button class="primary-button" id="getSuggestions" onclick="getSuggestions()">Get Suggestions ✨</button>
+        <div id="output" class="generated-itinerary"></div>
+    </div>
   </section>
 
   <section class="ai-suggestions">
@@ -165,16 +166,29 @@
     }
 
     function getSuggestions() {
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) {
-      // If not signed in, redirect to sign-in page
+  const source = document.querySelector('.source-input').value;
+  const destination = document.querySelector('.destination-input').value;
+  const style = document.querySelector('select[name="travelStyle"]').value;
+  const startDate = document.getElementById('start-date').value;
+  const endDate = document.getElementById('end-date').value;
+
+  if (!source || !destination || !style || !startDate || !endDate) {
+    alert('Please fill in all fields to get suggestions!');
+    return;
+  }
+
+  const currentUser = localStorage.getItem('currentUser');
+  if (!currentUser) {
     alert('Please sign in to get AI suggestions!');
     window.location.href = 'auth/signin.html';
-    } else {
-      // If signed in, redirect to AI Itinerary Page
-      window.location.href = 'itenary.html'; // Make sure the path is correct
-    }
+  } else {
+    // Optional: Store trip data
+    localStorage.setItem('tripData', JSON.stringify({ source, destination, style, startDate, endDate }));
+    // Redirect to itinerary page
+    window.location.href = 'itenary.html';
+  }
 }
+
 </script>
 
 </body>

@@ -7,10 +7,17 @@
   <title>TripGenie - AI Travel Planner</title>
   <link rel="stylesheet" href="itenary.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .nav-links { display: none; }
+    .nav-links.active { display: block; }
+    .saved-item { background-color: #fff; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+    .saved-item button { margin-right: 10px; }
+    pre { white-space: pre-wrap; }
+  </style>
 </head>
 
 <body>
-  <!-- Header -->
+  <!-- Header Section -->
   <header>
     <div class="logo">TripGenie</div>
     <nav>
@@ -29,50 +36,35 @@
     </nav>
   </header>
 
-  <!-- Flight Search Collapsible -->
+  <!-- Flight Search -->
   <section class="card flight-card">
     <div class="card-header" onclick="toggleFlightCard()">
-      <h3>
-        <i class="fa-solid fa-plane-departure"></i> Find Flights
-        <span class="dropdown-icon" id="flightArrow">▼</span>
-      </h3>
+      <h3><i class="fa-solid fa-plane-departure"></i> Find Flights <span id="flightArrow">▼</span></h3>
     </div>
-
     <div class="flight-content">
-      <label for="from">From</label>
+      <label>From</label>
       <input type="text" id="from" placeholder="Enter departure city">
-
-      <label for="to">To</label>
+      <label>To</label>
       <input type="text" id="to" placeholder="Enter destination city">
-
       <div class="trip-type">
         <label><input type="radio" name="trip" value="roundtrip"> Roundtrip</label>
         <label><input type="radio" name="trip" value="oneway" checked> One-way</label>
       </div>
-
       <div class="dates">
-        <div>
-          <label for="depart">Depart</label>
-          <input type="date" id="depart">
-        </div>
-        <div>
-          <label for="return">Return</label>
-          <input type="date" id="return" disabled>
-        </div>
+        <div><label>Depart</label><input type="date" id="depart"></div>
+        <div><label>Return</label><input type="date" id="return" disabled></div>
       </div>
-
-      <button class="primary-button">Search Flights ✈️</button>
+      <button class="primary-button" type="button">Search Flights ✈️</button>
     </div>
   </section>
 
   <!-- AI Itinerary Section -->
   <section class="itinerary">
-    <h2 class="section-title">Your AI-Generated Itinerary</h2>
+    <h2>Your AI-Generated Itinerary</h2>
     <div id="itinerary-list"></div>
-
     <div class="button-group">
       <button class="primary-button" onclick="addDay()">Add Day</button>
-      <button class="secondary-button" onclick="saveItinerary()">Save</button>
+      <button onclick="saveItinerary()">Save</button>
       <button class="secondary-button" onclick="shareItinerary()">Share</button>
     </div>
   </section>
@@ -86,7 +78,7 @@
         <p>Ensure a restful night at family-friendly hotels.</p>
       </div>
     </div>
-    <button class="primary-button">Find Hotels ➔</button>
+    <button class="primary-button" type="button">Find Hotels ➔</button>
   </section>
 
   <!-- Footer -->
@@ -105,54 +97,51 @@
       <a href="#">Terms of Service</a>
     </div>
   </footer>
-
-  <!-- JavaScript -->
+  
   <script>
-    // Toggle Flight Card
-    function toggleFlightCard() {
+    // Add AI Suggested Day
+    window.addDay = () => {
+      const list = document.getElementById('itinerary-list');
+      const day = document.createElement('div');
+      day.innerHTML = `<p>Day ${list.children.length + 1}: [AI Suggested Plan]</p>`;
+      list.appendChild(day);
+    };
+    // Toggle Functions
+    window.toggleFlightCard = () => {
       const card = document.querySelector('.flight-card');
       const arrow = document.getElementById('flightArrow');
       card.classList.toggle('open');
       arrow.classList.toggle('rotate');
-    }
+    };
 
-    // Handle Roundtrip / One-way logic
+    window.toggleDropdown = (e) => {
+      e.preventDefault();
+      document.getElementById('dropdownMenu').classList.toggle('show');
+    };
+
+    window.toggleMenu = () => {
+      document.querySelector('.nav-links').classList.toggle('active');
+    };
+
+    // Enable Return Date on Roundtrip
     const tripRadios = document.querySelectorAll('input[name="trip"]');
     const returnInput = document.getElementById('return');
     tripRadios.forEach(radio => {
       radio.addEventListener('change', () => {
-        returnInput.disabled = radio.value !== 'roundtrip';
+        returnInput.disabled = !(radio.value === 'roundtrip' && radio.checked);
       });
     });
-
-    // Navbar Dropdown
-    function toggleDropdown(event) {
-      event.preventDefault();
-      document.getElementById('dropdownMenu').classList.toggle('show');
-    }
-
-    // Hamburger Menu
-    function toggleMenu() {
-      document.querySelector('.nav-links').classList.toggle('active');
-    }
-
-    // Itinerary Controls
-    function addDay() {
-      const itinerary = document.getElementById('itinerary-list');
-      const day = document.createElement('div');
-      day.innerHTML = `<p>Day ${itinerary.children.length + 1}: [AI Suggested Plan]</p>`;
-      itinerary.appendChild(day);
-    }
-
-    function saveItinerary() {
-      alert("Your itinerary has been saved!");
-    }
-
-    function shareItinerary() {
-      alert("Sharing your AI-generated itinerary...");
-    }
+    // Load Trip Data from LocalStorage and Generate AI Itinerary
+    document.addEventListener('DOMContentLoaded', async () => {
+      const tripData = JSON.parse(localStorage.getItem('tripData'));
+      if (!tripData) {
+        alert("No trip data found! Redirecting...");
+        window.location.href = "index.html";
+        return;
+      }
+      await generateItinerary(tripData.destination, 3); // Dynamic days if needed
+    });
   </script>
-
 </body>
 
 </html>
